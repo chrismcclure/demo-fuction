@@ -3,7 +3,7 @@
 namespace DemoApiClient.Utilities
 {
     /// <summary>
-    /// Super crazy simple logic, figured an extension method is what doctor ordered.
+    /// Super crazy simple logic, figured an extension method is what the doctor ordered.
     /// More complex business logic would be moved to it's own project of engines
     /// and put behind an Interface to isolate it from the client project, make it re-useable by other projects, and make it testable with fakes.
     /// </summary>
