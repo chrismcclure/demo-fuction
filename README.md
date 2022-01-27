@@ -51,7 +51,7 @@ suited to production use.
 6. Automated Continous Delivery Pipleline using Github Actions to deploy the function app to Azure when a PR is merged into Main.
 
 ## Things still TODO
-1. Add Terraform to Automated CD Pipline to create or update the function app on each deploy. 
+1. Add Terraform to Automated CD Pipeline to create or update the function app on each deploy. 
    + updates or adds settings and configurations.
 2. Create smoke tests to run on against Azure endpoint after deployment.
 3. Create integration tests to test against Azure Endpoint after deployment.
