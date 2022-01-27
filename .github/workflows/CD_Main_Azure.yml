@@ -1,0 +1,58 @@
+name: Continous Deployment To Azure Main
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+env:
+  AZURE_WEBAPP_NAME:  petal-rules   # set this to the name of your Azure Web App
+  AZURE_WEBAPP_PACKAGE_PATH:  'DemoApiClient'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '3.1.407'                 # set this to the .NET Core version to use
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hey running your build and trying to deploy
+
+      # Make sure the correct dotnet is setup
+      - uses: actions/checkout@v2         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+          
+      # Restore the dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: DemoApiClient
+
+      # Run dotnet build and publish
+      - name: dotnet build
+        working-directory: DemoApiClient
+        run: dotnet build --configuration Release
+
+      # Publish the stuff to the app folder
+      - name: dotnet publish        
+        run: dotnet publish -c Release -o '/myapp'
+        working-directory: DemoApiClient
+              
+      # Deploy to Azure Web apps
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+          package: '/myapp'
