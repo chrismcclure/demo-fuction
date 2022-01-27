@@ -50,13 +50,14 @@ suited to production use.
    + Runs the tests.
 6. Automated Continous Delivery Pipleline using Github Actions to deploy the function app to Azure when a PR is merged into Main.
 
-
 ## Things still TODO
-1. Create smoke tests to run on against Azure endpoint after deployment.
-2. Create integration tests to test against Azure Endpoint after deployment.
-3. Add Full Test Pipeline to be run after PR merge into Main to:
+1. Add Terraform to Autmoated CD Pipline to create or update the function app on each deploy. 
+   + To update or add settings and configurations.
+2. Create smoke tests to run on against Azure endpoint after deployment.
+3. Create integration tests to test against Azure Endpoint after deployment.
+4. Add Full Test Pipeline to be run after PR merge into Main to:
    + create a test resource in Azure using Terraform
    + run smoke and integratin tests
    + destroy test Azure resource
-4. Add to trigger for current Continous Delivery Pipeline to only deploy if Full Test Pipeline is successful.
-5. Powershell script for devs to create individual resource in Azure for development and testing.
+6. Add to trigger for current Continous Delivery Pipeline to only deploy if Full Test Pipeline is successful.
+7. Powershell script for devs to create individual resource in Azure for development and testing.
