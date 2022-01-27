@@ -47,7 +47,7 @@ namespace DemoApiClient.Functions
 
         /// <summary>
         /// I made this endpoint Authorization Level Anonymous
-        /// In the real world this would Authorization Level Function
+        /// In the real world this would Authorization Level Function or Admin
         /// Also if I had more time I would use Open Api to make this self documenting. 
         /// </summary>
         /// <param name="request"></param>
@@ -65,6 +65,8 @@ namespace DemoApiClient.Functions
 
                 _Log.LogInformation($"Word to transform: {model.TransformString}");
 
+                //Probably don't need this check here since the Reverse() extension method should protect itself from null
+                //but it doesn't hurt anything.  Better safe that sorry
                 if (string.IsNullOrEmpty(model.TransformString))
                     throw new ArgumentException("Word to transform is null or empty.");
 
@@ -84,13 +86,13 @@ namespace DemoApiClient.Functions
                     Data = result.Output
                 });
             }
-            //we could make a custom exception if something else is wrong with the request body, but you get the point.
+            //we could make a custom exception if something else is wrong with the request body, like InvalidRequestException, but you get the point.
             //I will just use the Argument Exception to catch a specific exception and return a specific Http Code 400
             //In this function, this exception will only be thrown if the data value is null or empty
             catch (ArgumentException e)
             {
                 _Log.LogError("Invalid Operation", e);
-                return new BadRequestObjectResult("Bad request. Data is request body null, empty, or invalid");
+                return new BadRequestObjectResult("Bad request. Data property in request body is null, empty, or invalid");
             }
             catch (Exception e)
             {

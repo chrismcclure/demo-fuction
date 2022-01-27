@@ -1,6 +1,5 @@
 #  Requirements:
 
-
 1. Use source control to manage the files in your implementation. 
 
 2. Write a microservice that exposes a very simple REST API with one endpoint. That
@@ -39,9 +38,9 @@ suited to production use.
 
 ## Things I did
 
-1. Created an api endpoint that reverse the string from the post body.
-2. Used ShoutCloud.io to uppercase string.
-3. Returned string in the body with propety "data".
+1. Created an api endpoint ro reverse the string from the post body property "data".
+2. Used ShoutCloud.io api to uppercase string.
+3. Returned string in the response  body with propety "data".
 4. Wrote two tests:
    + One unit test for the extension method that is reversing the string.
    + One sudo integration test for the api call to uppercase the string.
@@ -52,7 +51,7 @@ suited to production use.
 6. Automated Continous Delivery Pipleline using Github Actions to deploy the function app to Azure when a PR is merged into Main.
 
 
-## Thing TODO
+## Things still TODO
 1. Create smoke tests to run on against Azure endpoint after deployment.
 2. Create integration tests to test against Azure Endpoint after deployment.
 3. Add Full Test Pipeline to be run after PR merge into Main to:
