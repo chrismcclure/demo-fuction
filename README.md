@@ -39,23 +39,23 @@ suited to production use.
 
 ## Things I did
 
-1. Create an api endpoint that reverse the string from the post body.
+1. Created an api endpoint that reverse the string from the post body.
 2. Used ShoutCloud.io to uppercase string.
-3. Return string in the body with propety "data".
-4. Two tests:
+3. Returned string in the body with propety "data".
+4. Wrote two tests:
    + One unit test for the extension method that is reversing the string.
    + One sudo integration test for the api call to uppercase the string.
-5. Automated CI Pipeline for PRs that does the following:
-   + Restores Nuget Packeges and Dependencies.
-   + Builds the full solution (Not just the project).
+5. Automated CI Pipeline using Github Actions for PRs that does the following:
+   + Restores nuget packeges and dependencies.
+   + Builds the full solution (not just the project).
    + Runs the tests.
-6. Automated Continous Delivery Pipleline to deploy the function app to Azure when a PR is merged into Main.
+6. Automated Continous Delivery Pipleline using Github Actions to deploy the function app to Azure when a PR is merged into Main.
 
 
 ## Thing TODO
 1. Create smoke tests to run on against Azure endpoint after deployment.
 2. Create integration tests to test against Azure Endpoint after deployment.
-3. Add Full Test Pipeline After PR merge into Main to:
+3. Add Full Test Pipeline to be run after PR merge into Main to:
    + create a test resource in Azure using Terroform
    + run smoke and integratin tests
    + destroy test Azure resource
