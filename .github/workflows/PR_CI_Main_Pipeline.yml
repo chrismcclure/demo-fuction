@@ -15,9 +15,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
-    - name: Restore dependencies
+    - name: Restore Dependencies
       run: dotnet restore DemoApi.sln
-    - name: Build
+    - name: Build Solution
       run: dotnet build --no-restore DemoApi.sln
-    - name: Test
+    - name: Run Tests
       run: dotnet test DemoApiTest//DemoApiTest.csproj --no-build --verbosity normal
+    - name: Check Package Vulnerabilities
+      run: dotnet list DemoApi.sln package --vulnerable
