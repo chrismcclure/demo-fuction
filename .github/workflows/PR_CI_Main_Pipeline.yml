@@ -21,5 +21,3 @@ jobs:
       run: dotnet build --no-restore DemoApi.sln
     - name: Run Tests
       run: dotnet test DemoApiTest//DemoApiTest.csproj --no-build --verbosity normal
-    - name: Check Package Vulnerabilities
-      run: dotnet list DemoApi.sln package --vulnerable
