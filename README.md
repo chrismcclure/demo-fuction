@@ -33,7 +33,7 @@ suited to production use.
 **JSON Request Body Example:** 
 { "data" : "selur latep"}
 
-**Json Response Body Example:**
+**JSON Response Body Example:**
 {"data": "PETAL RULES"}
 
 ## Things I did
@@ -59,4 +59,4 @@ suited to production use.
    + run smoke and integratin tests
    + destroy test Azure resource
 4. Add to trigger for current Continous Delivery Pipeline to only deploy if Full Test Pipeline is successful.
-5. Powershell script for dev to create resource in Azure for development and testing.
+5. Powershell script for devs to create individual resource in Azure for development and testing.
