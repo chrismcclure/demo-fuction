@@ -48,7 +48,7 @@ namespace DemoApiClient.Functions
         /// <summary>
         /// I made this endpoint Authorization Level Anonymous
         /// In the real world this would Authorization Level Function
-        /// Also if I  had  more time I would use Open Api to make this self documenting. 
+        /// Also if I had more time I would use Open Api to make this self documenting. 
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace DemoApiClient.Functions
                 });
             }
             //we could make a custom exception if something else is wrong with the request body, but you get the point.
-            //I wil just use the Argument Exception to catch a specific exception and return a specific Http Code 400
+            //I will just use the Argument Exception to catch a specific exception and return a specific Http Code 400
             //In this function, this exception will only be thrown if the data value is null or empty
             catch (ArgumentException e)
             {
