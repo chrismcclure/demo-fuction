@@ -31,7 +31,7 @@ namespace DemoApiTest
         public void TransformUtilityTest()
         {
             string reverse = "tsetomed";
-            var result = TransformUtility.Reverse(_DemoTest);
+            var result = _DemoTest.Reverse();
             PrintResults(result);
             result.ShouldBe(reverse, "The word wasn't reversed properly.");
         }

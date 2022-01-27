@@ -35,8 +35,6 @@ namespace DemoApiClient.Utilities
             request.AddParameter("application/json", JsonSerializer.Serialize(model),  ParameterType.RequestBody);
             IRestResponse response = await client.ExecuteAsync(request);
 
-            Console.WriteLine(response.Content);
-
             if (response is null || string.IsNullOrEmpty(response.Content))
                 throw new InvalidOperationException("The result from the api was null or empty string.");
 

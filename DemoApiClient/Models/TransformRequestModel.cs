@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DemoApiClient.Models
 {
@@ -11,6 +12,7 @@ namespace DemoApiClient.Models
         /// Use the Json property name data and convert to C# property
         /// </summary>
         [JsonPropertyName("data")]
+        [Required]
         public string TransformString { get; set; }
     }
 }
