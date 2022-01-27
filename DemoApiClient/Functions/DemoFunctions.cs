@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Http;
 using DemoApiClient.Models;
@@ -44,23 +45,30 @@ namespace DemoApiClient.Functions
 
         #region Function Endpoints
 
-        [Microsoft.Azure.WebJobs.FunctionName("DemoFunction_Transform_V")]
-        public async Task<IActionResult> Transform([Microsoft.Azure.WebJobs.HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1")]
-            HttpRequest request)
+        /// <summary>
+        /// I made this endpoint Authorization Level Anonymous
+        /// In the real world this would Authorization Level Function
+        /// Also if I  had  more time I would use Open Api to make this self documenting. 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [Microsoft.Azure.WebJobs.FunctionName("DemoFunction_Transform_V1")]
+        public async Task<IActionResult> Transform([Microsoft.Azure.WebJobs.HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1")] HttpRequest request)
         {
+            Stopwatch s = Stopwatch.StartNew();
+
             _Log.LogTrace("Request received for transform functions");
 
             try
             {
-
                 TransformRequestModel model = await SerializeToModel<TransformRequestModel>(request);
 
                 _Log.LogInformation($"Word to transform: {model.TransformString}");
 
                 if (string.IsNullOrEmpty(model.TransformString))
                     throw new ArgumentException("Word to transform is null or empty.");
-                
-                string reservedString = TransformUtility.Reverse(model.TransformString);
+
+                string reservedString = model.TransformString.Reverse();
 
                 _Log.LogInformation($"Word reversed: {reservedString}");
 
@@ -69,7 +77,7 @@ namespace DemoApiClient.Functions
                     Input = reservedString
                 });
 
-                _Log.LogInformation($"All good in the hood. Uppercase word to return: {result.Output}");
+                _Log.LogInformation($"All good in the hood. Uppercase word to return: {result.Output}.  Total processing time {s.Elapsed}");
 
                 return new OkObjectResult(new TransformResponseModel
                 {

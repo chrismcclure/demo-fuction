@@ -31,7 +31,7 @@ namespace DemoApiTest
         public void TransformUtilityTest()
         {
             string reverse = "tsetomed";
-            var result = TransformUtility.Reverse(_DemoTest);
+            var result = _DemoTest.Reverse();
             PrintResults(result);
             result.ShouldBe(reverse, "The word wasn't reversed properly.");
         }
@@ -49,7 +49,7 @@ namespace DemoApiTest
             {
                 Input = _DemoTest
             };
-            var results = await ExternalApiUtility.Uppercase<UpperCaseRequestModel, UpperCaseResponseModel>(requestModel);
+            UpperCaseResponseModel results = await ExternalApiUtility.Uppercase<UpperCaseRequestModel, UpperCaseResponseModel>(requestModel);
             PrintResults(results.Output);
             _DemoTest.ToUpper().ShouldBe(results.Output);
         }
