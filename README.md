@@ -55,7 +55,7 @@ suited to production use.
 1. Create smoke tests to run on against Azure endpoint after deployment.
 2. Create integration tests to test against Azure Endpoint after deployment.
 3. Add Full Test Pipeline to be run after PR merge into Main to:
-   + create a test resource in Azure using Terroform
+   + create a test resource in Azure using Terraform
    + run smoke and integratin tests
    + destroy test Azure resource
 4. Add to trigger for current Continous Delivery Pipeline to only deploy if Full Test Pipeline is successful.
